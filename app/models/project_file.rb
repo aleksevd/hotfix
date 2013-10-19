@@ -46,7 +46,7 @@ class ProjectFile
   def self.inner_list(dirs, current_path)
     list = []
 
-    Dir.entries([FIXED_APP_PATH, current_path].join('/')).sort{ |a,b| a.downcase <=> b.downcase }.each do |entry|
+    Server.file_list([FIXED_APP_PATH, current_path].join('/')).sort{ |a,b| a.downcase <=> b.downcase }.each do |entry|
       next if (entry == '..' || entry == '.')
       entry_full_path = [FIXED_APP_PATH, current_path, entry].join('/')
 

@@ -5,6 +5,16 @@ class Server
   RESTART_COMMAND = Hotfix::Application.config.fixed_application['restart_command']
   SSH_OPTIONS = Hotfix::Application.config.ssh_options
 
+  def self.file_list(full_path)
+    list = ''
+
+    Net::SFTP.start(SSH_OPTIONS['host'], SSH_OPTIONS['user'], password: SSH_OPTIONS['password']) do |sftp|
+      list = sftp.dir.entries(full_path).map(&:name)
+    end
+    puts list.inspect
+    list
+  end
+
   def self.restart
     Net::SSH.start(SSH_OPTIONS['host'], SSH_OPTIONS['user'], password: SSH_OPTIONS['password']) do |ssh|
       ssh.exec!(RESTART_COMMAND)
