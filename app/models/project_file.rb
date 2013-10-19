@@ -1,7 +1,10 @@
 class ProjectFile
-  FIXED_APP = Hotfix::Application.config.fixed_application
+  include ActiveModel::Conversion
+  extend ActiveModel::Naming
 
-  attr_accessor :name, :full_path, :entries
+  FIXED_APP_PATH = Hotfix::Application.config.fixed_application['path']
+
+  attr_accessor :name, :full_path, :entries, :path, :content
 
   def initialize(attributes = {})
     return if attributes.nil?
@@ -11,8 +14,32 @@ class ProjectFile
     end
   end
 
+  def path=(string)
+    @path = string
+    @full_path = FIXED_APP_PATH + string
+  end
+
   def file?
     @is_file ||= File.file?(full_path)
+  end
+
+  def persisted?
+    true
+  end
+
+  def content
+    return @content if @content
+
+    file = File.open(full_path, "rb")
+    file.read
+  end
+
+  def save
+    File.open(full_path, "w") do |file|
+      file.write(content)
+    end
+
+    Server.restart
   end
 
   def self.list(path = '')
@@ -23,11 +50,9 @@ class ProjectFile
   def self.inner_list(dirs, current_path)
     list = []
 
-    Dir.entries([FIXED_APP['path'], current_path].join('/')).sort{ |a,b| a.downcase <=> b.downcase }.each do |entry|
+    Dir.entries([FIXED_APP_PATH, current_path].join('/')).sort{ |a,b| a.downcase <=> b.downcase }.each do |entry|
       next if (entry == '..' || entry == '.')
-      entry_full_path = [FIXED_APP['path'], current_path, entry].join('/')
-      puts entry
-      puts dirs.inspect
+      entry_full_path = [FIXED_APP_PATH, current_path, entry].join('/')
 
       if entry == dirs.try(:first)
         list << ProjectFile.new(name: entry,

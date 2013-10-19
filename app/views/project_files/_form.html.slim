@@ -1,0 +1,4 @@
+= simple_form_for @project_file do |f|
+  = f.input :path, as: :hidden, input_html: { name: :path }
+  = f.input :content, as: :text
+  = f.button :submit

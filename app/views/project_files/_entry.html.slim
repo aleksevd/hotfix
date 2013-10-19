@@ -5,7 +5,7 @@ li
   - else
   
     - if entry.file?
-      = link_to entry.name, '#', class: 'file'
+      = link_to entry.name, project_file_path(path: [path, entry.name].join('/')), class: 'file'
     - else
       = link_to entry.name, project_files_path(path: [path, entry.name].join('/')), class: 'dir'
         

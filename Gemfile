@@ -8,6 +8,7 @@ gem 'sqlite3'
 
 gem 'thin'
 gem 'slim-rails'
+gem 'simple_form'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
