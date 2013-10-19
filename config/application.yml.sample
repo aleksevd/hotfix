@@ -5,4 +5,4 @@ fixed_application:
 ssh:
   host: 'localhost'
   user: 'aleksevd'
-  password: ''sevd/work/chat'
+  password: ''
