@@ -38,6 +38,8 @@ end
 
 group :development do
   gem 'thin'
+  gem 'capistrano', '~> 2.15.5'
+  gem "rvm-capistrano"
 end
 
 # Use ActiveModel has_secure_password
@@ -45,9 +47,6 @@ end
 
 # Use unicorn as the app server
 # gem 'unicorn'
-
-# Use Capistrano for deployment
-gem 'capistrano', '~> 2.15.5', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]

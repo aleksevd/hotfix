@@ -1,4 +1,5 @@
 require 'bundler/capistrano'
+require 'rvm/capistrano'
 load 'deploy/assets'
 
 set :application,                "hotfix"
@@ -11,13 +12,13 @@ set :branch,                     "master"
 
 
 set :rails_env,                  "production"
-set :deploy_to,                   "/home/apps/hotfix/"
+set :deploy_to,                   "/home/apps/hotfix"
 set :domain,                     "binarycode.r13.railsrumble.com"
 set :use_sudo,                   false
 set :user,                       "apps"
 
 
-set :rvm_ruby_string,            'ruby-2.0.0-p247'
+#set :rvm_ruby_string,            'ruby-2.0.0-p247'
 set :rvm_type, :user
 
 set :deploy_via,    :remote_cache
