@@ -19,5 +19,12 @@ module Hotfix
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    file_path = File.join(Rails.root, 'config', 'application.yml')
+
+    if File.file?(file_path)
+      app_config = YAML::load(File.open(file_path))
+      config.fixed_application = app_config['fixed_application']
+    end
   end
 end
