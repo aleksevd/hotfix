@@ -1,0 +1,11 @@
+li
+  - if entry.entries
+    ul
+      = render partial: 'entry', collection: entry.entries, locals: { path: [path, entry.name].join('/') }
+  - else
+  
+    - if entry.file?
+      = link_to entry.name, '#', class: 'file'
+    - else
+      = link_to entry.name, project_files_path(path: [path, entry.name].join('/')), class: 'dir'
+        
