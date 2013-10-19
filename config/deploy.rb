@@ -1,6 +1,4 @@
 require 'bundler/capistrano'
-require 'capistrano_colors'
-require 'rvm/capistrano'
 load 'deploy/assets'
 
 set :application,                "hotfix"
@@ -8,7 +6,7 @@ set :application,                "hotfix"
 server "173.255.247.113",           :app, :web, :db, :primary => true
 
 set :scm,                        :git
-set :repository,                 "https://github.com/railsrumble/r13-team-41.git"
+set :repository,                 "git@github.com:railsrumble/r13-team-41.git"
 set :branch,                     "master"
 
 
@@ -36,9 +34,6 @@ after "deploy", "deploy:cleanup"
 default_environment['APP_ROOT']     = current_path
 default_environment['SOCKET_ABBR']  = application
 default_environment['WORKERS']      = 3
-
-set :whenever_command, "bundle exec whenever"
-require "whenever/capistrano"
 
 namespace :deploy do
   task :start, except: { no_release: true } do

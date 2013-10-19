@@ -6,7 +6,6 @@ gem 'rails', '4.0.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
-gem 'thin'
 gem 'slim-rails'
 gem 'simple_form'
 gem "net-sftp"
@@ -37,6 +36,10 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :development do
+  gem 'thin'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -44,7 +47,7 @@ end
 # gem 'unicorn'
 
 # Use Capistrano for deployment
-# gem 'capistrano', group: :development
+gem 'capistrano', '~> 2.15.5', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
