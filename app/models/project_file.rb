@@ -30,15 +30,11 @@ class ProjectFile
   def content
     return @content if @content
 
-    file = File.open(full_path, "rb")
-    file.read
+    file = Server.get_file_content(full_path)
   end
 
   def save
-    File.open(full_path, "w") do |file|
-      file.write(content)
-    end
-
+    Server.rewrite_file(full_path, content)
     Server.restart
   end
 
