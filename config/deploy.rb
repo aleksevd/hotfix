@@ -68,7 +68,7 @@ namespace :deploy do
   end
 
   task :link_configs do
-    #run "ln -sF #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
+    run "ln -sF #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
     run "ln -sF #{deploy_to}/shared/config/application.yml #{release_path}/config/application.yml"
   end
 
