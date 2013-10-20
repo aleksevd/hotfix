@@ -4,7 +4,7 @@ require 'stringio'
 class Server
   SERVER_OPTIONS = Hotfix::Application.config.server_options
 
-  attr_accessor :host, :user, :password, :restart_command, :fixed_app_path
+  attr_accessor :host, :user, :password, :restart_command, :fixed_app_path, :port
 
   def initialize(attributes = nil)
     (attributes || SERVER_OPTIONS).each do |name, value|
@@ -15,7 +15,7 @@ class Server
   def file_list(full_path)
     list = ''
 
-    Net::SFTP.start(host, user, password: password) do |sftp|
+    Net::SFTP.start(host, user, password: password, port: port) do |sftp|
       list = sftp.dir.entries(full_path).map(&:name)
     end
 
@@ -25,7 +25,7 @@ class Server
   def file?(full_path)
     is_file = nil
 
-    Net::SFTP.start(host, user, password: password) do |sftp|
+    Net::SFTP.start(host, user, password: password, port: port) do |sftp|
       sftp.file.open(full_path, "r") do |file|
         is_file = file.stat.file?
       end
@@ -35,13 +35,13 @@ class Server
   end
 
   def restart
-    Net::SSH.start(host, user, password: user) do |ssh|
+    Net::SSH.start(host, user, password: password, port: port) do |ssh|
       ssh.exec!(restart_command)
     end
   end
 
   def rewrite_file(full_path, content)
-    Net::SFTP.start(host, user, password: user) do |sftp|
+    Net::SFTP.start(host, user, password: password, port: port) do |sftp|
       io = StringIO.new(content)
       sftp.upload!(io, full_path)
     end
@@ -50,7 +50,7 @@ class Server
   def get_file_content(full_path)
     content = ''
 
-    Net::SFTP.start(host, user, password: user) do |sftp|
+    Net::SFTP.start(host, user, password: password, port: port) do |sftp|
       sftp.file.open(full_path) do |file|
         content = file.read
       end
