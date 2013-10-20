@@ -23,7 +23,7 @@ class ProjectFilesController < ApplicationController
   private
 
   def set_breadcrumbs
-    @breadcrumbs = params[:path].split('/')[1..-1] if params[:path]
+    @breadcrumbs = params[:path].split('/') if params[:path]
   end
 
   def set_server
