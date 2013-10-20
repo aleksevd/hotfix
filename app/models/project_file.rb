@@ -33,7 +33,7 @@ class ProjectFile
 
   def content=(string)
     self.old_content = content
-    @content = string
+    @content = string.gsub("\r", '')
   end
 
   def save
