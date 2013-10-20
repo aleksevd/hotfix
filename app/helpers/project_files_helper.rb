@@ -1,13 +1,9 @@
 module ProjectFilesHelper
-  def two_points_link(path, action)
+  def parent_path(path, action)
     if action == 'index'
-      return link_to '..', project_files_path(path: path.split('/')[0..-2].join('/'))
-    else
-      if path.split('/').size > 2
-        return link_to '..', project_files_path(path: path.split('/')[0..-3].join('/'))
-      else
-        return
-      end
+      project_files_path(path: path.split('/')[0..-2].join('/'))
+    elsif path.split('/').size > 2
+      project_files_path(path: path.split('/')[0..-3].join('/'))
     end
   end
 

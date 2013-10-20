@@ -1,4 +1,8 @@
 .explorer
+  - unless params[:path].blank? || parent_path(params[:path], params[:action]).nil?
+    .explorer-item
+      = image_tag('icons/up.png', class: 'explorer-item-icon')
+      = link_to '..', parent_path(params[:path], params[:action]), class: 'explorer-item-link'
   - @project_files.each do |item|
     .explorer-item
       = image_tag(item.is_file ? 'icons/file.png' : 'icons/folder.png', class: 'explorer-item-icon')
