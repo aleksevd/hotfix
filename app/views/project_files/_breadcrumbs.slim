@@ -8,4 +8,7 @@
         .breadcrumbs-item.breadcrumbs-item_separator
           = image_tag('icons/next.png')
         .breadcrumbs-item
-          = link_to(item, project_files_path(path: @breadcrumbs[0..(index + 1)].join('/')), class: 'breadcrumbs-item-link')
+          - if (index + 2) == @breadcrumbs.size
+            = item
+          - else
+            = link_to(item, project_files_path(path: @breadcrumbs[0..(index + 1)].join('/')), class: 'breadcrumbs-item-link')
