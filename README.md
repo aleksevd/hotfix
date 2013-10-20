@@ -4,11 +4,15 @@
 
 Hotfix is a tool for making fast hotfixes without deploy.
 
+
 There are only four simple steps needed to make hotfix:
 
 1) Choose file
+
 2) Make changes
+
 3) Click "Update and restart!" button
+
 4) Enjoy fastest hotfix you ever made!
 
 Installation
