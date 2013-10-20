@@ -5,9 +5,14 @@ class ProjectFilesController < ApplicationController
 
   def index
     @project_files = @server.list(params[:path])
+
+  rescue
+    redirect_to root_path, alert: 'Sorry, server is experiencing problems with ssh connection, please try again later.'
   end
 
   def show
+  rescue
+    redirect_to root_path, alert: 'Sorry, server is experiencing problems with ssh connection, please try again later.'
   end
 
   def update
@@ -18,6 +23,9 @@ class ProjectFilesController < ApplicationController
     else
       redirect_to :back, alert: "Something went wrong"
     end
+
+  rescue
+    redirect_to root_path, alert: 'Sorry, server is experiencing problems with ssh connection, please try again later.'
   end
 
   private
