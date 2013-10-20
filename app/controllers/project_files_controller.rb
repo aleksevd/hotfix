@@ -34,6 +34,6 @@ class ProjectFilesController < ApplicationController
     @dirs = params[:path].split('/')
     @project_file = ProjectFile.new(name: @dirs[-1], path: params[:path], server: @server)
 
-    @project_files = @server.list(@dirs[0..-2].join('/')).sort_by(&:sort_criteria)
+    @project_files = @server.list(@dirs[0..-2].join('/'))
   end
 end

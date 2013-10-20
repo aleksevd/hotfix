@@ -49,7 +49,7 @@ class Server
 
   def list(path = '')
     path ||= ''
-    inner_list(path)
+    inner_list(path).sort_by(&:sort_criteria)
   end
 
   def inner_list(current_path)
