@@ -2,7 +2,7 @@ class ProjectFile
   include ActiveModel::Conversion
   extend ActiveModel::Naming
 
-  attr_accessor :name, :full_path, :entries, :path, :content, :server
+  attr_accessor :name, :is_file, :full_path, :entries, :path, :content, :server
 
   def initialize(attributes = {})
     return if attributes.nil?
@@ -15,10 +15,6 @@ class ProjectFile
   def path=(string)
     @path = string
     @full_path = server.fixed_app_path + string
-  end
-
-  def file?
-    @is_file ||= server.file?(full_path)
   end
 
   def persisted?

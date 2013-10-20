@@ -4,7 +4,7 @@ li
       = render partial: 'entry', collection: entry.entries, locals: { path: [path, entry.name].join('/') }
   - else
   
-    - if entry.file?
+    - if entry.is_file
       = link_to entry.name, project_file_path(path: [path, entry.name].join('/')), class: 'file'
     - else
       = link_to entry.name, project_files_path(path: [path, entry.name].join('/')), class: 'dir'

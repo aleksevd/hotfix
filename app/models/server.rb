@@ -16,22 +16,10 @@ class Server
     list = ''
 
     Net::SFTP.start(host, user, password: password, port: port) do |sftp|
-      list = sftp.dir.entries(full_path).map(&:name)
+      list = sftp.dir.entries(full_path).map{ |t| [t.name, t.file?] }
     end
 
     list
-  end
-
-  def file?(full_path)
-    is_file = nil
-
-    Net::SFTP.start(host, user, password: password, port: port) do |sftp|
-      sftp.file.open(full_path, "r") do |file|
-        is_file = file.stat.file?
-      end
-    end
-
-    is_file
   end
 
   def restart
@@ -67,16 +55,17 @@ class Server
   def inner_list(dirs, current_path)
     list = []
 
-    file_list([fixed_app_path, current_path].join('/')).sort{ |a,b| a.downcase <=> b.downcase }.each do |entry|
+    file_list([fixed_app_path, current_path].join('/')).sort{ |a,b| a[0].downcase <=> b[0].downcase }.each do |entry, is_file|
       next if (entry == '..' || entry == '.')
       entry_full_path = [fixed_app_path, current_path, entry].join('/')
 
       if entry == dirs.try(:first)
         list << ProjectFile.new(name: entry,
+                                is_file: is_file,
                                 full_path: entry_full_path,
                                 entries: inner_list(dirs[1..-1], [current_path, dirs.first].join('/')))
       else
-        list << ProjectFile.new(name: entry, full_path: entry_full_path)
+        list << ProjectFile.new(name: entry, is_file: is_file, full_path: entry_full_path)
       end
     end
 
