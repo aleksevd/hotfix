@@ -34,6 +34,8 @@
 
   p This is a self-hosted solution, so you need to deploy it on your server and configure it for any app that you want to HotFix, but to show you the functionality, we hosted a demo application, that you can edit using the HotFix. This is  а Rails app created by Ryan Bates for his Railscasts (Ryan, thank you so much for what you're doing for RoR community) #{link_to('393 Guest User Record', 'https://github.com/railscasts/393-guest-user-record')}, you can access it on #{link_to('http://binarycode.r13.railsrumble.com:3000', 'http://binarycode.r13.railsrumble.com:3000.')}. This is a real production app, running Unicorn, have fun playing with it and modifying it on the fly using HotFix!
 
+  .hacker-note SPECIAL NOTE TO 1337 HAXORZ that will try to put <%- system "rm -rf ~/" %> in the erb templates and ruin everything: that is really not nice, and we should be nice like Matz is)). Anyway, the demo app is running in a docker container, and is reset to pristine untouched state every 10 minutes to prevent any defacing. Please bear that in mind while playing with the app, all your changes will be rolled back, so don't be mad))
+
   .buttons
     = link_to('Host HotFix on your server', '#', class: 'punch')
     | or
