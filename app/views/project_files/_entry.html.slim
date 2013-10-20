@@ -1,5 +1,6 @@
 li
   - if entry.entries
+    = link_to entry.name, project_files_path(path: [path, entry.name].join('/')), class: 'dir'
     ul
       = render partial: 'entry', collection: entry.entries, locals: { path: [path, entry.name].join('/') }
   - else
