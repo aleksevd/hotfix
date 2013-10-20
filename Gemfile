@@ -9,6 +9,7 @@ gem 'sqlite3'
 gem 'slim-rails'
 gem 'simple_form'
 gem "net-sftp"
+gem 'diffy'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
