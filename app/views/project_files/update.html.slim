@@ -1,8 +1,9 @@
-h3 Diffs
-= link_to 'Back to file list', :back
-/ .file_manager
-/   = render 'file_manager'
+.diff-outer
+  .diff-container
+    .diff-actions
+      = link_to('Back to file list', :back, class: 'punch')
 
-= Diffy::Diff.new(@project_file.old_content, @project_file.content).to_s(:html).html_safe
-br
-= link_to 'Back to file list', :back
+    = Diffy::Diff.new(@project_file.old_content, @project_file.content).to_s(:html).html_safe
+
+    .diff-actions
+      = link_to('Back to file list', :back, class: 'punch')
