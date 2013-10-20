@@ -9,6 +9,7 @@ html
   body
     #container
       = content_tag(:header, class: (controller_name != 'landings') && 'small') do
+        = render('layouts/flashes')
         = link_to :root do
           h2= 'HotFix'
           = image_tag('cayenne3.png')
