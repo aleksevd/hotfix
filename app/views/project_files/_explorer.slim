@@ -6,4 +6,7 @@
   - @project_files.each do |item|
     .explorer-item
       = image_tag(item.is_file ? 'icons/file.png' : 'icons/folder.png', class: 'explorer-item-icon')
-      = link_to item.name, project_file_path(path: entry_path(params[:path], params[:action], item.name)), class: 'explorer-item-link'
+      - if item.is_file
+        = link_to item.name, project_file_path(path: entry_path(params[:path], params[:action], item.name)), class: 'explorer-item-link'
+      - else
+        = link_to item.name, project_files_path(path: entry_path(params[:path], params[:action], item.name)), class: 'explorer-item-link'
