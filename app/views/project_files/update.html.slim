@@ -3,7 +3,7 @@
     .diff-actions
       = link_to('Back to file list', :back, class: 'punch')
 
-    = Diffy::Diff.new(@project_file.old_content, @project_file.content).to_s(:html).html_safe
+    = Diffy::Diff.new(@project_file.old_content.force_encoding('utf-8'), @project_file.content.force_encoding('utf-8')).to_s(:html).html_safe
 
     .diff-actions
       = link_to('Back to file list', :back, class: 'punch')
