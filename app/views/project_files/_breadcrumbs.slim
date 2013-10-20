@@ -3,8 +3,9 @@
     .breadcrumbs-item
       = link_to(:project_files, class: 'breadcrumbs-item-link breadcrumbs-item-link_home') do
         = image_tag('icons/home.png')
-    - @breadcrumbs.each_with_index do |item, index|
-      .breadcrumbs-item.breadcrumbs-item_separator
-        = image_tag('icons/next.png')
-      .breadcrumbs-item
-        = link_to(item, project_files_path(path: @breadcrumbs[0..index].join('/')), class: 'breadcrumbs-item-link')
+    - if @breadcrumbs.present?
+      - @breadcrumbs.each_with_index do |item, index|
+        .breadcrumbs-item.breadcrumbs-item_separator
+          = image_tag('icons/next.png')
+        .breadcrumbs-item
+          = link_to(item, project_files_path(path: @breadcrumbs[0..index].join('/')), class: 'breadcrumbs-item-link')
