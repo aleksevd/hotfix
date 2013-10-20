@@ -1,6 +1,0 @@
-li 
-  - if entry.is_file
-    = link_to entry.name, project_file_path(path: entry_path(params[:path], params[:action], entry.name)), class: 'file'
-  - else
-    = link_to entry.name, project_files_path(path: entry_path(params[:path], params[:action], entry.name)), class: 'dir'
-        

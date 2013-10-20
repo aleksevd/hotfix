@@ -1,0 +1,7 @@
+= render('breadcrumbs') if @breadcrumbs
+
+.dashboard
+  .dashboard-container
+    = render 'explorer'
+    = yield(:editor)
+    .dashboard-clear

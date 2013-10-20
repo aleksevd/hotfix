@@ -1,7 +1,5 @@
-= render 'breadcrumbs'
+- content_for(:editor) do
+  .form
+    = render 'form'
 
-.file_manager
-  = render 'file_manager'
-
-.form
-  =render 'form'
+= render('dashboard')

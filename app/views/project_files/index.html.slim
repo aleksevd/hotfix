@@ -1,2 +1,4 @@
-= render 'breadcrumbs'
-= render 'file_manager'
+- content_for(:editor) do
+  p Help goes here
+
+= render('dashboard')
