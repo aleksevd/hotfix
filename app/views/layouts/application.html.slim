@@ -6,7 +6,7 @@ html
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
 
-  body
+  body class=(params[:screenshot] ? 'no-google-fonts' : '')
     #container
       = content_tag(:header, class: (controller_name != 'landings') && 'small') do
         = render('layouts/flashes')
