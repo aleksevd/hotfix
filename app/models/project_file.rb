@@ -42,4 +42,9 @@ class ProjectFile
 
     true
   end
+
+  def sort_criteria
+    type = is_file ? '1' : '0'
+    "#{type}#{name.downcase}"
+  end
 end
