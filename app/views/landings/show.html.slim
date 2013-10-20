@@ -1,7 +1,30 @@
 .description
-  p Are you tired of constantly deploying your apps (waiting for ages for those damn assets to precompile) only to find that you forgot to check for a nil somewhere, or made a typo that wasn't caught by your specs? Ouch, that hurts more than Sriracha!
+  p Did you ever deploy your Rails app, waiting endless minutes for the specs to run, assets to precompile, unicorns to restart, only to find that you forgot to check for a nil somewhere?
 
-  p But fear not, here is a solution to all your problems:
+  p Ouch, that hurts more than Sriracha!
+
+  p Well, fear not, we've got a solution for you:
+
+
+  .step.step_odd
+    .step-image= image_tag('step1.png')
+    .step-number Step 1
+    .step-description Select the file that you want to fix
+
+  .step.step_even
+    .step-image= image_tag('step2.png')
+    .step-number Step 2
+    .step-description Fix that damn typo!
+
+  .step.step_odd
+    .step-image= image_tag('step3.png')
+    .step-number Step 3
+    .step-description Hit the "Update and Restart!"
+
+  .step.step_even
+    .step-image= image_tag('step4.png')
+    .step-number Step 4
+    .step-description That's it, the app is now fixed!
 
   .buttons
     = link_to('Host on your server', '#', class: 'punch')
