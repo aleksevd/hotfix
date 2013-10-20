@@ -41,6 +41,8 @@ group :development do
   gem 'thin'
   gem 'capistrano', '~> 2.15.5'
   gem "rvm-capistrano"
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 # Use ActiveModel has_secure_password
