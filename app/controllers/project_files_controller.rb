@@ -7,12 +7,12 @@ class ProjectFilesController < ApplicationController
     @project_files = @server.list(params[:path])
 
   rescue
-    redirect_to root_path, alert: 'Sorry, server is experiencing problems with ssh connection, please try again later.'
+    ssh_exception_hendler
   end
 
   def show
   rescue
-    redirect_to root_path, alert: 'Sorry, server is experiencing problems with ssh connection, please try again later.'
+    ssh_exception_hendler
   end
 
   def update
@@ -25,7 +25,7 @@ class ProjectFilesController < ApplicationController
     end
 
   rescue
-    redirect_to root_path, alert: 'Sorry, server is experiencing problems with ssh connection, please try again later.'
+    ssh_exception_hendler
   end
 
   private
