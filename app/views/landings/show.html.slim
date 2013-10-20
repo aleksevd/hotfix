@@ -5,6 +5,11 @@
 
   p Well, fear not, for we've got a solution for you:
 
+  .buttons
+    = link_to('Host HotFix on your server', '#', class: 'punch')
+    | or
+    = link_to('View Demo', :project_files, class: 'punch')
+
   .step.step_odd
     .step-image= image_tag('step1.png')
     .step-number Step 1
@@ -25,7 +30,11 @@
     .step-number Step 4
     .step-description That's it, the app is now fixed!
 
+  .step-clear
+
+  p This is a self-hosted solution, so you need to deploy it on your server and configure it for any app that you want to HotFix, but to show you the functionality, we hosted a demo application, that you can edit using the HotFix. This is  а Rails app created by Ryan Bates for his Railscasts (Ryan, thank you so much for what you're doing for RoR community) #{link_to('393 Guest User Record', 'https://github.com/railscasts/393-guest-user-record')}, you can access it on #{link_to('http://binarycode.r13.railsrumble.com:3000', 'http://binarycode.r13.railsrumble.com:3000.')}. This is a real production app, running Unicorn, have fun playing with it and modifying it on the fly using HotFix!
+
   .buttons
-    = link_to('Host on your server', '#', class: 'punch')
+    = link_to('Host HotFix on your server', '#', class: 'punch')
     | or
     = link_to('View Demo', :project_files, class: 'punch')
