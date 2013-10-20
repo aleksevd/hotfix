@@ -18,7 +18,7 @@ class Server
     Net::SFTP.start(host, user, password: password) do |sftp|
       list = sftp.dir.entries(full_path).map(&:name)
     end
-    puts list.inspect
+
     list
   end
 
