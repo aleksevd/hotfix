@@ -1,6 +1,0 @@
-ul
-  - unless params[:path].blank? || two_points_link(params[:path], params[:action]).nil?
-    li
-      = two_points_link(params[:path], params[:action])
-    
-  = render partial: 'entry', collection: @project_files

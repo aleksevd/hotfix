@@ -1,7 +1,7 @@
 .breadcrumbs
   .breadcrumbs-container
     .breadcrumbs-item
-      = link_to('#', class: 'breadcrumbs-item-link breadcrumbs-item-link_home') do
+      = link_to(:project_files, class: 'breadcrumbs-item-link breadcrumbs-item-link_home') do
         = image_tag('icons/home.png')
     - @breadcrumbs.each_with_index do |item, index|
       .breadcrumbs-item.breadcrumbs-item_separator
