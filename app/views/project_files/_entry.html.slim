@@ -1,12 +1,6 @@
-li
-  - if entry.entries
-    = link_to entry.name, project_files_path(path: [path, entry.name].join('/')), class: 'dir'
-    ul
-      = render partial: 'entry', collection: entry.entries, locals: { path: [path, entry.name].join('/') }
+li 
+  - if entry.is_file
+    = link_to entry.name, project_file_path(path: entry_path(params[:path], params[:action], entry.name)), class: 'file'
   - else
-  
-    - if entry.is_file
-      = link_to entry.name, project_file_path(path: [path, entry.name].join('/')), class: 'file'
-    - else
-      = link_to entry.name, project_files_path(path: [path, entry.name].join('/')), class: 'dir'
+    = link_to entry.name, project_files_path(path: entry_path(params[:path], params[:action], entry.name)), class: 'dir'
         

@@ -49,24 +49,17 @@ class Server
 
   def list(path = '')
     path ||= ''
-    inner_list(path.split('/')[1..-1], '')
+    inner_list(path)
   end
 
-  def inner_list(dirs, current_path)
+  def inner_list(current_path)
     list = []
 
     file_list([fixed_app_path, current_path].join('/')).sort{ |a,b| a[0].downcase <=> b[0].downcase }.each do |entry, is_file|
       next if (entry == '..' || entry == '.')
       entry_full_path = [fixed_app_path, current_path, entry].join('/')
 
-      if entry == dirs.try(:first)
-        list << ProjectFile.new(name: entry,
-                                is_file: is_file,
-                                full_path: entry_full_path,
-                                entries: inner_list(dirs[1..-1], [current_path, dirs.first].join('/')))
-      else
-        list << ProjectFile.new(name: entry, is_file: is_file, full_path: entry_full_path)
-      end
+      list << ProjectFile.new(name: entry, is_file: is_file, full_path: entry_full_path)
     end
 
     list

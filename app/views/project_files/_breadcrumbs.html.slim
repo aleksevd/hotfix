@@ -1,0 +1,8 @@
+- if @breadcrumbs
+  .breadcrumbs
+    - @breadcrumbs.each_with_index do |entry, index|
+      - if (index + 1) == @breadcrumbs.size
+        = entry
+      - else
+        = link_to (entry.blank? ? 'root' : entry), project_files_path(path: @breadcrumbs[0..index].join('/'))
+        = ' / '

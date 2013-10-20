@@ -1,4 +1,5 @@
 class ProjectFilesController < ApplicationController
+  before_filter :set_breadcrumbs
   before_filter :set_server
   before_filter :set_project_file, only: [:show, :update]
 
@@ -20,6 +21,10 @@ class ProjectFilesController < ApplicationController
   end
 
   private
+
+  def set_breadcrumbs
+    @breadcrumbs = params[:path].split('/') if params[:path]
+  end
 
   def set_server
     @server = Server.new(params[:server_options])
