@@ -22,6 +22,18 @@ class Server
     list
   end
 
+  def file?(full_path)
+    is_file = nil
+
+    Net::SFTP.start(host, user, password: password) do |sftp|
+      sftp.file.open(full_path, "r") do |file|
+        is_file = file.stat.file?
+      end
+    end
+
+    is_file
+  end
+
   def restart
     Net::SSH.start(host, user, password: user) do |ssh|
       ssh.exec!(restart_command)

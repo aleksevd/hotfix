@@ -18,7 +18,7 @@ class ProjectFile
   end
 
   def file?
-    @is_file ||= File.file?(full_path)
+    @is_file ||= server.file?(full_path)
   end
 
   def persisted?
