@@ -4,3 +4,4 @@ server_options:
   password: ''
   fixed_app_path: '/Users/aleksevd/work/chat'
   restart_command: "kill -s USR2 `cat /tmp/unicorn_chat.pid`"
+  target_app: 'http://binarycode.r13.railsrumble.com:3000'

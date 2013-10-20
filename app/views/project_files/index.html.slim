@@ -1,4 +1,7 @@
 - content_for(:editor) do
-  p Help goes here
+  .quick-help
+    p Your application is running at: #{link_to(@server.target_app, @server.target_app, target: '_blank')}
+
+    p Please feel free to browse files and HotFix anything in your application. Don't forget to click "Update and restart!", this will update your files on remote server and restart the application runner!
 
 = render('dashboard')

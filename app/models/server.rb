@@ -4,7 +4,7 @@ require 'stringio'
 class Server
   SERVER_OPTIONS = Hotfix::Application.config.server_options
 
-  attr_accessor :host, :user, :password, :restart_command, :fixed_app_path, :port
+  attr_accessor :host, :user, :password, :restart_command, :fixed_app_path, :port, :target_app
 
   def initialize(attributes = nil)
     (attributes || SERVER_OPTIONS).each do |name, value|
