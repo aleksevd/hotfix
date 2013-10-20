@@ -19,7 +19,7 @@ class ProjectFilesController < ApplicationController
     @project_file.content = params[:project_file][:content]
 
     if @project_file.save
-      flash.now[:notice] = "Application successfully updated and now is restarting. Please check at <a href='http://173.255.247.113:3000/'>test application</a>".html_safe
+      flash.now[:notice] = "Application successfully updated and now is restarting. Please check at <a href='http://173.255.247.113:3000/'>http://test_application.com</a>".html_safe
     else
       redirect_to :back, alert: "Something went wrong"
     end
