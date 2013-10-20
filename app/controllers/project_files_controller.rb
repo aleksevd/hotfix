@@ -1,12 +1,13 @@
 class ProjectFilesController < ApplicationController
+  before_filter :set_server
   before_filter :set_project_file, only: [:show, :update]
 
   def index
-    @project_files = ProjectFile.list(params[:path])
+    @project_files = @server.list(params[:path])
   end
 
   def show
-    @project_files = ProjectFile.list(@dirs[0..-2].join('/'))
+    @project_files = @server.list(@dirs[0..-2].join('/'))
   end
 
   def update
@@ -21,8 +22,12 @@ class ProjectFilesController < ApplicationController
 
   private
 
+  def set_server
+    @server = Server.new(params[:server_options])
+  end
+
   def set_project_file
     @dirs = params[:path].split('/')
-    @project_file = ProjectFile.new(name: @dirs[-1], path: params[:path])
+    @project_file = ProjectFile.new(name: @dirs[-1], path: params[:path], server: @server)
   end
 end

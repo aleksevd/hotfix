@@ -2,9 +2,7 @@ class ProjectFile
   include ActiveModel::Conversion
   extend ActiveModel::Naming
 
-  FIXED_APP_PATH = Hotfix::Application.config.fixed_application['path']
-
-  attr_accessor :name, :full_path, :entries, :path, :content
+  attr_accessor :name, :full_path, :entries, :path, :content, :server
 
   def initialize(attributes = {})
     return if attributes.nil?
@@ -16,7 +14,7 @@ class ProjectFile
 
   def path=(string)
     @path = string
-    @full_path = FIXED_APP_PATH + string
+    @full_path = server.fixed_app_path + string
   end
 
   def file?
@@ -27,38 +25,18 @@ class ProjectFile
     true
   end
 
+  def server
+    @server ||= Server.new
+  end
+
   def content
     return @content if @content
 
-    file = Server.get_file_content(full_path)
+    file = server.get_file_content(full_path)
   end
 
   def save
-    Server.rewrite_file(full_path, content)
-    Server.restart
-  end
-
-  def self.list(path = '')
-    path ||= ''
-    inner_list(path.split('/')[1..-1], '')
-  end
-
-  def self.inner_list(dirs, current_path)
-    list = []
-
-    Server.file_list([FIXED_APP_PATH, current_path].join('/')).sort{ |a,b| a.downcase <=> b.downcase }.each do |entry|
-      next if (entry == '..' || entry == '.')
-      entry_full_path = [FIXED_APP_PATH, current_path, entry].join('/')
-
-      if entry == dirs.try(:first)
-        list << ProjectFile.new(name: entry,
-                                full_path: entry_full_path,
-                                entries: inner_list(dirs[1..-1], [current_path, dirs.first].join('/')))
-      else
-        list << ProjectFile.new(name: entry, full_path: entry_full_path)
-      end
-    end
-
-    list
+    server.rewrite_file(full_path, content)
+    server.restart
   end
 end

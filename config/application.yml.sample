@@ -1,8 +1,6 @@
-fixed_application:
-  path: '/Users/aleksevd/work/chat'
-  restart_command: "kill -s USR2 `cat /tmp/unicorn_chat.pid`"
-  
-ssh:
+server_options:
   host: 'localhost'
   user: 'aleksevd'
   password: ''
+  fixed_app_path: '/Users/aleksevd/work/chat'
+  restart_command: "kill -s USR2 `cat /tmp/unicorn_chat.pid`"

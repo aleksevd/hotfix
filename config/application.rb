@@ -24,8 +24,7 @@ module Hotfix
 
     if File.file?(file_path)
       app_config = YAML::load(File.open(file_path))
-      config.fixed_application = app_config['fixed_application']
-      config.ssh_options = app_config['ssh']
+      config.server_options = app_config['server_options']
     end
   end
 end
