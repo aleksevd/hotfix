@@ -2,7 +2,7 @@ class ProjectFile
   include ActiveModel::Conversion
   extend ActiveModel::Naming
 
-  attr_accessor :name, :is_file, :full_path, :entries, :path, :content, :server
+  attr_accessor :name, :is_file, :full_path, :entries, :path, :content, :server, :old_content
 
   def initialize(attributes = {})
     return if attributes.nil?
@@ -31,8 +31,15 @@ class ProjectFile
     file = server.get_file_content(full_path)
   end
 
+  def content=(string)
+    self.old_content = content
+    @content = string
+  end
+
   def save
     server.rewrite_file(full_path, content)
     server.restart
+
+    true
   end
 end
