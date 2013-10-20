@@ -1,6 +1,7 @@
 = simple_form_for @project_file do |f|
   .editor-status
-    .editor-status-content= @project_file.name
     = f.button :submit, 'Update and restart!', class: 'punch editor-update'
+    .editor-status-content You are editing #{@project_file.name}
+    .editor-status-content= link_to('View your application', @server.target_app, target: '_blank')
   = f.input :path, as: :hidden, input_html: { name: :path }
   = f.input :content, as: :text, label: false
