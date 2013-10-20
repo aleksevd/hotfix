@@ -12,5 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require codemirror
+//= require mode/ruby/ruby
+//= require mode/coffeescript/coffeescript
+//= require mode/htmlembedded/htmlembedded
+//= require mode/htmlmixed/htmlmixed
+//= require mode/javascript/javascript
+//= require mode/sass/sass
 //= require turbolinks
 //= require_tree .
